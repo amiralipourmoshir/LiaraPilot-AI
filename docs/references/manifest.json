@@ -1,0 +1,20 @@
+[
+  {
+    "file": "docs/references/paas.yaml",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "sha256": "a8b8ab24c0b2decf8a67a93a9fc935f93846a991f999d0c4ebb7478a6fc4d56d",
+    "retrievedOn": "2026-10-23"
+  },
+  {
+    "file": "docs/references/dbaas.yaml",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "sha256": "9bf50fbe70adefcebf08e6a87951d7bc64632f2842636e6028ee48d96a1e7c55",
+    "retrievedOn": "2026-10-23"
+  },
+  {
+    "file": "docs/references/dns.yaml",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "sha256": "b5cfbf1a63f09117b3bb0e643bd8d06f0d45a58aaf97db965f37d802a08f583c",
+    "retrievedOn": "2026-10-23"
+  }
+]

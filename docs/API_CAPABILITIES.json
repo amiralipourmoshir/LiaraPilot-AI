@@ -1,0 +1,5444 @@
+[
+  {
+    "service": "paas",
+    "operation": "getApps",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Projects"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Validated with deterministic official-contract fixtures. Live verification pending credentials. Metric units are not inferred.",
+    "implementation": "packages/liara-adapter/src/client.ts",
+    "tests": [
+      "tests/liara-adapter.test.ts",
+      "tests/liara-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "createApp",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Create-app"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppByName",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProjectAllDetails"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Validated with deterministic official-contract fixtures. Live verification pending credentials. Metric units are not inferred.",
+    "implementation": "packages/liara-adapter/src/client.ts",
+    "tests": [
+      "tests/liara-adapter.test.ts",
+      "tests/liara-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "deleteAppByName",
+    "method": "DELETE",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of the app to delete",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Your request has been submitted.",
+        "content": {}
+      },
+      "204": {
+        "description": "App deleted.",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "turnApp",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/actions/scale",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of the app to turn on or off",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "Return 1 to turn on or 0 to turn off",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "scale"
+            ],
+            "type": "object",
+            "properties": {
+              "scale": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Your request has been submitted.",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "restartApp",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/actions/restart",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of the app to restart",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Your request has been submitted.",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "sourcesDeploy",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v2/projects/{name}/sources",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app for deploy",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "binary",
+                "description": "The .gz file to deploy"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sourceID": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Approval-bound existing Node application workflow only; fixture-tested, live PaaS verification pending. No blind retries.",
+    "implementation": "packages/deployment/src/provider.ts",
+    "tests": [
+      "tests/deployment-unit.test.ts",
+      "tests/deployment-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "releasesDeploy",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v2/projects/{name}/releases",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app for deploy",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Deploy-releases"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "releaseID": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Approval-bound existing Node application workflow only; fixture-tested, live PaaS verification pending. No blind retries.",
+    "implementation": "packages/deployment/src/provider.ts",
+    "tests": [
+      "tests/deployment-unit.test.ts",
+      "tests/deployment-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "zeroDowntime",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/zero-downtime/{status}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "status",
+        "in": "path",
+        "description": "disable or enable",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "defaultSubdomain",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/default-subdomain/{status}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "status",
+        "in": "path",
+        "description": "disable or enable",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "ipStatic",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/fixed-ip/{status}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "status",
+        "in": "path",
+        "description": "disable or enable",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "IP": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "readOnly",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/read-only/{status}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "status",
+        "in": "path",
+        "description": "disable or enable",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "updateEnvs",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/update-envs",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Update-envs"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "changePlan",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/resize",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "The plan of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "planID"
+            ],
+            "type": "object",
+            "properties": {
+              "planID": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "createFtp",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/disks/{dname}/ftp",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "dname",
+        "in": "path",
+        "description": "The name of your disk",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "The plan of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "username",
+              "readOnly"
+            ],
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "readOnly": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "host": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getFtps",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/disks/{dname}/ftp",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "dname",
+        "in": "path",
+        "description": "The name of your disk",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accesses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "disk": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "readOnly": {
+                        "type": "boolean"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "__v": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "host": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getDisks",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/disks",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Get-disks"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getBackups",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/disks/{name}/backups",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your disk",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Get-disk-backup"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "createBackup",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/disks/{name}/backups",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your disk",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "downloadBackup",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/disks/{dname}/backups/{bname}/download",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "dname",
+        "in": "path",
+        "description": "The name of your disk",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "bname",
+        "in": "path",
+        "description": "The name of your backup",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "resizeDisk",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/disks/{dname}/resize",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "dname",
+        "in": "path",
+        "description": "The name of your disk",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "The size of your disk",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "size"
+            ],
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "createDisk",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/disks",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "The disk of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "name",
+              "size"
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "201": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "deleteDisk",
+    "method": "DELETE",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{id}/disks/{name}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your disk of app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "deleteFtp",
+    "method": "DELETE",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/ftp/{fname}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "fname",
+        "in": "path",
+        "description": "The name of your ftp",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "checkDomain",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains/{id}/check",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your domain",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CheckDomain"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Domain does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppLogs",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/logs",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "Show logs since timestamp",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Logs"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Validated with deterministic official-contract fixtures. Live verification pending credentials. Metric units are not inferred.",
+    "implementation": "packages/liara-adapter/src/client.ts",
+    "tests": [
+      "tests/liara-adapter.test.ts",
+      "tests/liara-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "getAppEvents",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/events",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of the app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "description": "Show events based on search query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "start",
+        "in": "query",
+        "description": "start timestamp",
+        "example": 1704028315,
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "end",
+        "in": "query",
+        "description": "end timestamp",
+        "example": 1704028315,
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "data"
+              ],
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "metaData": {
+                        "type": "object"
+                      },
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppApplets",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/applets",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Applets"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppReleases",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/releases",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "page",
+        "in": "query",
+        "description": "The page of your releases",
+        "required": true,
+        "schema": {
+          "type": "number",
+          "default": 1.0
+        }
+      },
+      {
+        "name": "count",
+        "in": "query",
+        "description": "The count of your releases",
+        "required": true,
+        "schema": {
+          "type": "number",
+          "default": 10.0
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Releases"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Validated with deterministic official-contract fixtures. Live verification pending credentials. Metric units are not inferred.",
+    "implementation": "packages/liara-adapter/src/client.ts",
+    "tests": [
+      "tests/liara-adapter.test.ts",
+      "tests/liara-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "getAppSummaryReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/metrics/summary",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cpuUsage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "applet": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "memoryUsage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "applet": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "disksUsage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "size": {
+                        "type": "string"
+                      },
+                      "usage": {
+                        "type": "string"
+                      },
+                      "reportedAt": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": true,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Validated with deterministic official-contract fixtures. Live verification pending credentials. Metric units are not inferred.",
+    "implementation": "packages/liara-adapter/src/client.ts",
+    "tests": [
+      "tests/liara-adapter.test.ts",
+      "tests/liara-api.test.ts"
+    ]
+  },
+  {
+    "service": "paas",
+    "operation": "getAppCpuReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/metrics/cpu",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your cpu reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppMemoryReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/metrics/memory",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your memory reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppNetworkReceiveReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/metrics/network-receive",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your network-receive reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getNetworkTransmitReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/projects/{name}/metrics/network-transmit",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your network-transmit reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "getAppDomains",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "project",
+        "in": "query",
+        "description": "The name of your app",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Domains"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "createAppDomain",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "description": "The domain of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "name",
+              "project",
+              "type"
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "project": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "default": "PROJECT"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "201": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "domain": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "setAppDomain",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains/set-project",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "description": "The domain of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "domainID",
+              "projectID"
+            ],
+            "type": "object",
+            "properties": {
+              "domainID": {
+                "type": "string"
+              },
+              "projectID": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "App or domain does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "redirectDomain",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains/{id}/set-redirect",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your domain",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "The domain of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "redirectStatus",
+              "redirectTo"
+            ],
+            "type": "object",
+            "properties": {
+              "redirectStatus": {
+                "type": "number",
+                "description": "302 or 301"
+              },
+              "redirectTo": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Domain does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "disableSsl",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains/{id}/ssl/disable",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your domain",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "204": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Domain does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "enableSsl",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains/provision-ssl-certs",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "description": "The domain of your app",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "domain"
+            ],
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Domain does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "paas",
+    "operation": "deleteDomain",
+    "method": "DELETE",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/domains/{id}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/paas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of your domain",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Domain does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabase",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DB-details"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "deleteDatabase",
+    "method": "DELETE",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getListDatabases",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DBs-details"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "createDatabase",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Create-databases"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "databaseID": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "TurnDatabase",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/actions/scale",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "1 for power on or 0 for power off",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "scale"
+            ],
+            "type": "object",
+            "properties": {
+              "scale": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "resizeDatabase",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/resize",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "planID"
+            ],
+            "type": "object",
+            "properties": {
+              "disk": {
+                "type": "boolean"
+              },
+              "planID": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getListBackups",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/backups",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "backups": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "lastModified": {
+                        "type": "string"
+                      },
+                      "etag": {
+                        "type": "string"
+                      },
+                      "size": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "createBackup",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/backups",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "databasesSettings",
+    "method": "PATCH",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/settings",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Databases-settings"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "downloadBackup",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/backups/{name}/download",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "The id of your database",
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "name",
+        "in": "path",
+        "required": true,
+        "description": "The name of your backup",
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "changeControlPanel",
+    "method": "POST",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/control-panel/{status}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "status",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable"
+          ]
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "controlPanelID": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "changePublicNetwork",
+    "method": "PATCH",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/public-network/{status}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "status",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable"
+          ]
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database not found",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabaseCpuReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/metrics/cpu",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The name of your database",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your cpu reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabaseMemoryReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/metrics/memory",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The name of your database",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your memory reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabaseNetworkReceiveReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/metrics/network-receive",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The name of your database",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your network-receive reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabaseNetworkTransmitReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/metrics/network-transmit",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The name of your database",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "since",
+        "in": "query",
+        "description": "The since of your network-transmit reports",
+        "required": true,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Reports"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabaseSummaryReports",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{id}/metrics/summary",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The name of your database",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cpuUsage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "applet": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "memoryUsage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "applet": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "disksUsage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "size": {
+                        "type": "string"
+                      },
+                      "usage": {
+                        "type": "string"
+                      },
+                      "reportedAt": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dbaas",
+    "operation": "getDatabaseEvents",
+    "method": "GET",
+    "baseUrl": "https://api.liara.ir",
+    "path": "/v1/databases/{name}/events",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dbaas.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      },
+      {
+        "bearerAuth": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "description": "The name of database",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "search",
+        "in": "query",
+        "description": "Show events based on search query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "start",
+        "in": "query",
+        "description": "start timestamp",
+        "example": 1704028315,
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      },
+      {
+        "name": "end",
+        "in": "query",
+        "description": "end timestamp",
+        "example": 1704028315,
+        "required": false,
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "required": [
+                "data"
+              ],
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "metaData": {
+                        "type": "object"
+                      },
+                      "values": {
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Database does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "getListZones",
+    "method": "GET",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "An server",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Zones"
+            }
+          }
+        }
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "createZone",
+    "method": "POST",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [],
+    "requestBody": {
+      "description": "The zone to create",
+      "content": {
+        "application/json": {
+          "schema": {
+            "required": [
+              "name"
+            ],
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "201": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Create-zone"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      },
+      "500": {
+        "description": "server does not response",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "getZone",
+    "method": "GET",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "zone details",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Create-zone"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "deleteZone",
+    "method": "DELETE",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to delete",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Your request has been submitted.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Submitted"
+            }
+          }
+        }
+      },
+      "204": {
+        "description": "Zone deleted.",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "checkNameServer",
+    "method": "PUT",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}/check",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to check status",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "201": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Submitted"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "bad request maybe validation error on zone name",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone does not exists or its status is not pending",
+        "content": {}
+      },
+      "406": {
+        "description": "Please try later.",
+        "content": {}
+      },
+      "500": {
+        "description": "server does not response",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "getListDnsRecords",
+    "method": "GET",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}/dns-records",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to see all dns records",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/All-dns-record-response"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone Not Found",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "createDnsRecord",
+    "method": "POST",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}/dns-records",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to create dns record",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Dns-record"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "201": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Dns-record-response"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "getDnsRecord",
+    "method": "GET",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}/dns-records/{id}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to see dns record",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of dns record to see its data",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Dns-record-response"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone or dns record Not Found",
+        "content": {}
+      }
+    },
+    "approval": "read-only-authorized",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "editDnsRecord",
+    "method": "PUT",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}/dns-records/{id}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to edit dns record",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of dns record to edit its data",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Dns-record"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Dns-record-response"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone does not exists.",
+        "content": {}
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {}
+      }
+    },
+    "approval": "required",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  },
+  {
+    "service": "dns",
+    "operation": "deleteDnsRecord",
+    "method": "DELETE",
+    "baseUrl": "https://dns-service.liara.ir",
+    "path": "/api/v1/zones/{zone}/dns-records/{id}",
+    "source": "https://github.com/liara-cloud/openapi/blob/master/spec/dns.yaml",
+    "authentication": [
+      {
+        "jwt": []
+      }
+    ],
+    "securitySchemes": {
+      "jwt": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "parameters": [
+      {
+        "name": "zone",
+        "in": "path",
+        "description": "The name of the zone to delete dns record",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      {
+        "name": "id",
+        "in": "path",
+        "description": "The id of dns record to delete its data",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    ],
+    "requestBody": null,
+    "responses": {
+      "204": {
+        "description": "Successful operation",
+        "content": {}
+      },
+      "400": {
+        "description": "Bad request",
+        "content": {}
+      },
+      "401": {
+        "description": "Missing authentication",
+        "content": {}
+      },
+      "404": {
+        "description": "Zone does not exists.",
+        "content": {}
+      }
+    },
+    "approval": "disabled-in-mvp",
+    "implemented": false,
+    "liveVerified": false,
+    "permission": "User-owned resource; provider account/team permission must be verified",
+    "limitations": "Specification only; schema references resolve in the saved service YAML. Runtime contract and permission checks pending."
+  }
+]

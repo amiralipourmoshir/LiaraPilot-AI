@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-23",
+  "generator": "built-in image_gen",
+  "reference": "User-supplied Liara SVG, rasterized without visual changes for reference",
+  "mascot": {
+    "name": "پایلوت",
+    "format": "RGBA PNG",
+    "width": 1254,
+    "height": 1254,
+    "transparent": true,
+    "prompt": "mascot-prompt.txt"
+  },
+  "assets": [
+    {
+      "path": "apps/web/public/brand/liara-logo.svg",
+      "sha256": "82d61fac14196ca84c132b0368db84c1ec3062642e439923c287c8480d4c2101",
+      "bytes": 3046
+    },
+    {
+      "path": "apps/web/public/brand/pilot-mascot.png",
+      "sha256": "fa659779b7923243e208521854539a2dbe34b22a846fac0af2d93b6a56241127",
+      "bytes": 995581
+    },
+    {
+      "path": "apps/web/public/brand/pilot-head.png",
+      "sha256": "64a1e0a2c2d1a4798730e363614cec66c870c28c0b61313c95f6c6d0380181a3",
+      "bytes": 1208281
+    },
+    {
+      "path": "apps/web/public/brand/chatgpt.svg",
+      "sha256": "41624059fb7ffee676f13d8a691876b7b178ea87476a211cf58498d58fc5388e",
+      "bytes": 1559,
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/13.21.0/icons/openai.svg",
+      "method": "local SVG knot mark; CSS mask for both themes"
+    }
+  ],
+  "head": {
+    "format": "RGBA PNG",
+    "width": 1254,
+    "height": 1254,
+    "transparent": true,
+    "prompt": "head-prompt.txt",
+    "method": "built-in image_gen identity-preserve"
+  }
+}

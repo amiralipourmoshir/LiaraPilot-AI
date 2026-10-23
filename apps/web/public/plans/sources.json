@@ -1,0 +1,52 @@
+[
+  {
+    "file": "earth.png",
+    "source": "https://console.liara.ir/static/media/earth.cf7299d4545c4a9b13a7.png",
+    "bytes": 71856
+  },
+  {
+    "file": "mars.png",
+    "source": "https://console.liara.ir/static/media/mars.eb0aee68c4dd392ce260.png",
+    "bytes": 54020
+  },
+  {
+    "file": "jupiter.png",
+    "source": "https://console.liara.ir/static/media/jupiter.d183324c482f5736dd67.png",
+    "bytes": 59403
+  },
+  {
+    "file": "saturn.png",
+    "source": "https://console.liara.ir/static/media/saturn.a0c653c86a4c1de74fe2.png",
+    "bytes": 55161
+  },
+  {
+    "file": "uranus.png",
+    "source": "https://console.liara.ir/static/media/uranus.8a0f1dbb98828524bb76.png",
+    "bytes": 50525
+  },
+  {
+    "file": "neptune.png",
+    "source": "https://console.liara.ir/static/media/neptunu.1ce621c208bf96135404.png",
+    "bytes": 30771
+  },
+  {
+    "file": "pluto.webp",
+    "source": "https://console.liara.ir/static/media/pluto.12666bf3f639e278038d.webp",
+    "bytes": 41540
+  },
+  {
+    "file": "basic.svg",
+    "source": "https://console.liara.ir/static/media/bronze.fe7410df792f220c25bda0d63c5ff6eb.svg",
+    "bytes": 7326
+  },
+  {
+    "file": "standard.svg",
+    "source": "https://console.liara.ir/static/media/silver.ec136bb986feb1b1cf9ea73cb5f020d4.svg",
+    "bytes": 7139
+  },
+  {
+    "file": "pro.svg",
+    "source": "https://console.liara.ir/static/media/gold.55face6239f8b21f356b35a2759dbd70.svg",
+    "bytes": 7690
+  }
+]

@@ -1,0 +1,433 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../packages/database/src/generated"
+}
+datasource db {
+  provider = "postgresql"
+}
+enum Mode {
+  DEMO
+  LIVE
+}
+enum OperationState {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+model User {
+  id           String    @id @default(uuid()) @db.Uuid
+  email        String    @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime  @default(now()) @db.Timestamptz(3)
+  sessions     Session[]
+  projects     Project[]
+  operations   Operation[]
+  auditLogs    AuditLog[]
+  connections  ProviderConnection[]
+  conversations Conversation[]
+  deployments Deployment[]
+  githubConnection GithubConnection?
+  githubAttempts GithubOAuthAttempt[]
+  repositoryAnalyses RepositoryAnalysis[]
+ inspections RepositoryInspection[]
+}
+model Session {
+  idHash     String   @id
+  csrfHash   String
+  userId     String   @db.Uuid
+  expiresAt  DateTime @db.Timestamptz(3)
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@index([expiresAt])
+}
+model Project {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @db.Uuid
+  name       String
+  mode       Mode     @default(DEMO)
+  createdAt  DateTime @default(now()) @db.Timestamptz(3)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+  operations Operation[]
+  @@unique([id, userId, mode])
+  @@index([userId, createdAt])
+}
+model Operation {
+  id             String         @id @default(uuid()) @db.Uuid
+  userId         String         @db.Uuid
+  projectId      String         @db.Uuid
+  mode           Mode           @default(DEMO)
+  type           String         @default("FOUNDATION_CHECK")
+  state          OperationState @default(QUEUED)
+  idempotencyKey String
+  requestHash    String
+  result         Json?
+  errorCode      String?
+  createdAt      DateTime       @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime       @updatedAt @db.Timestamptz(3)
+  completedAt    DateTime?      @db.Timestamptz(3)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Restrict)
+  project        Project        @relation(fields: [projectId, userId, mode], references: [id, userId, mode], onDelete: Restrict)
+  events         OperationEvent[]
+  outbox         OutboxEvent?
+  @@unique([userId, idempotencyKey])
+  @@index([userId, createdAt])
+  @@index([state, updatedAt])
+}
+model OperationEvent {
+  id          String    @id @default(uuid()) @db.Uuid
+  operationId String    @db.Uuid
+  sequence    Int
+  type        String
+  message     String
+  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
+  operation   Operation @relation(fields: [operationId], references: [id], onDelete: Cascade)
+  @@unique([operationId, sequence])
+}
+model OutboxEvent {
+  id          String    @id @default(uuid()) @db.Uuid
+  operationId String    @unique @db.Uuid
+  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
+  publishedAt DateTime? @db.Timestamptz(3)
+  operation   Operation @relation(fields: [operationId], references: [id], onDelete: Cascade)
+  @@index([publishedAt, createdAt])
+}
+model AuditLog {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @db.Uuid
+  action      String
+  resourceId  String?
+  requestId   String
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+  @@index([userId, createdAt])
+}
+model ProviderConnection {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @db.Uuid
+  provider          String   @default("LIARA")
+  mode              Mode     @default(LIVE)
+  label             String
+  teamRef           String   @default("")
+  status            String   @default("CONNECTED")
+  credentialVersion Int      @default(1)
+  validatedAt       DateTime? @db.Timestamptz(3)
+  syncedAt          DateTime? @db.Timestamptz(3)
+  disconnectedAt    DateTime? @db.Timestamptz(3)
+  lastErrorCode     String?
+  createdAt         DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime @updatedAt @db.Timestamptz(3)
+  user              User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+  credential        Credential?
+  applications      Application[]
+  @@unique([userId, provider, teamRef])
+  @@unique([id, userId, mode])
+  @@index([userId, status])
+}
+model Credential {
+  connectionId String @id @db.Uuid
+  ciphertext   String
+  nonce        String
+  authTag      String
+  keyVersion   String
+  createdAt    DateTime @default(now()) @db.Timestamptz(3)
+  connection   ProviderConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+model Application {
+  monitors HealthMonitor[]
+  id              String @id @default(uuid()) @db.Uuid
+  userId          String @db.Uuid
+  connectionId    String @db.Uuid
+  mode            Mode   @default(LIVE)
+  providerId      String
+  name            String
+  platform        String?
+  status          String?
+  scale           Float?
+  isDeployed      Boolean?
+  planId          String?
+  providerMissing Boolean @default(false)
+  lastSeenAt      DateTime @default(now()) @db.Timestamptz(3)
+  connection      ProviderConnection @relation(fields: [connectionId, userId, mode], references: [id, userId, mode], onDelete: Restrict)
+  @@unique([connectionId, providerId])
+  @@index([userId, connectionId])
+}
+
+model Conversation {
+  model String?
+  id String @id @default(uuid()) @db.Uuid
+  userId String @db.Uuid
+  title String
+  mode Mode @default(LIVE)
+  busyUntil DateTime? @db.Timestamptz(3)
+  busyToken String?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  messages ChatMessage[]
+  runs ChatRun[]
+  plans AssistantPlan[]
+  @@index([userId, updatedAt])
+}
+model ChatMessage {
+  interaction Json?
+  actionPath String?
+  id String @id @default(uuid()) @db.Uuid
+  conversationId String @db.Uuid
+  role String
+  content String
+  diagnosis Json?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  @@index([conversationId, createdAt])
+}
+model ChatRun {
+  id String @id @default(uuid()) @db.Uuid
+  conversationId String @db.Uuid
+  idempotencyKey String
+  requestHash String
+  state String @default("RUNNING")
+  errorCode String?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  @@unique([conversationId, idempotencyKey])
+}
+model AssistantPlan {
+  id String @id @default(uuid()) @db.Uuid
+  conversationId String @db.Uuid
+  hash String
+  snapshot Json
+  state String @default("PENDING")
+  errorCode String?
+  expiresAt DateTime @db.Timestamptz(3)
+  startedAt DateTime? @db.Timestamptz(3)
+  completedAt DateTime? @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  evidence AssistantEvidence[]
+  @@index([conversationId, createdAt])
+}
+model AssistantEvidence {
+  id String @id @default(uuid()) @db.Uuid
+  planId String @db.Uuid
+  tool String
+  source String @default("LIARA")
+  data Json
+  collectedAt DateTime @default(now()) @db.Timestamptz(3)
+  plan AssistantPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  @@index([planId])
+}
+
+model Deployment {
+ phase String @default("PLANNED")
+ heartbeatAt DateTime? @db.Timestamptz(3)
+ recheckLeaseUntil DateTime? @db.Timestamptz(3)
+ recovery Json?
+ retryOf String? @unique @db.Uuid
+ id String @id @default(uuid()) @db.Uuid
+ userId String @db.Uuid
+ applicationId String @db.Uuid
+ state String @default("PLANNED")
+ snapshot Json
+ hash String
+ errorCode String?
+ sourceId String?
+ releaseId String?
+ sequence Int @default(1)
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ expiresAt DateTime @db.Timestamptz(3)
+ startedAt DateTime? @db.Timestamptz(3)
+ completedAt DateTime? @db.Timestamptz(3)
+ user User @relation(fields:[userId],references:[id],onDelete:Restrict)
+ events DeploymentEvent[]
+ outbox DeploymentOutbox?
+ lease DeploymentLease?
+ secret DeploymentSecret?
+ @@index([userId,createdAt])
+}
+model DeploymentEvent {
+ id String @id @default(uuid()) @db.Uuid
+ deploymentId String @db.Uuid
+ sequence Int
+ message String
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ deployment Deployment @relation(fields:[deploymentId],references:[id],onDelete:Cascade)
+ @@unique([deploymentId,sequence])
+}
+model DeploymentOutbox {
+ deploymentId String @id @db.Uuid
+ publishedAt DateTime? @db.Timestamptz(3)
+ deployment Deployment @relation(fields:[deploymentId],references:[id],onDelete:Cascade)
+}
+model DeploymentLease {
+ applicationId String @id @db.Uuid
+ deploymentId String @unique @db.Uuid
+ deployment Deployment @relation(fields:[deploymentId],references:[id],onDelete:Cascade)
+}
+
+model GithubConnection {
+ userId String @id @db.Uuid
+ id String @unique @default(uuid()) @db.Uuid
+ login String
+ ciphertext String
+ nonce String
+ authTag String
+ keyVersion String
+ version Int @default(1)
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+}
+model GithubOAuthAttempt {
+ stateHash String @id
+ userId String @db.Uuid
+ bindingHash String
+ verifier String
+ expiresAt DateTime @db.Timestamptz(3)
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+}
+model RepositoryAnalysis {
+ id String @id @default(uuid()) @db.Uuid
+ userId String @db.Uuid
+ repositoryUrl String
+ branch String
+ manifest Json
+ githubVersion Int?
+ githubConnectionId String?
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ expiresAt DateTime @db.Timestamptz(3)
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId,createdAt])
+}
+
+model DeploymentSecret {
+ deploymentId String @id @db.Uuid
+ ciphertext String
+ nonce String
+ authTag String
+ keyVersion String
+ deployment Deployment @relation(fields:[deploymentId],references:[id],onDelete:Cascade)
+}
+
+model RepositoryInspection {
+ id String @id @default(uuid()) @db.Uuid
+ userId String @db.Uuid
+ input Json
+ state String @default("PENDING")
+ events Json @default("[]")
+ result Json?
+ error Json?
+ leaseUntil DateTime? @db.Timestamptz(3)
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ updatedAt DateTime @updatedAt @db.Timestamptz(3)
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId,state])
+}
+
+model HealthMonitor {
+ id String @id @default(uuid()) @db.Uuid
+ userId String @db.Uuid
+ applicationId String @db.Uuid
+ deploymentId String? @db.Uuid
+ application Application @relation(fields:[applicationId],references:[id],onDelete:Cascade)
+ enabled Boolean @default(true)
+ intervalSeconds Int @default(60)
+ failureThreshold Int @default(3)
+ path String
+ expectedText String
+ failureCount Int @default(0)
+ successCount Int @default(0)
+ lastStatus Int?
+ lastError String?
+ latencyMs Int?
+ lastCheckedAt DateTime? @db.Timestamptz(3)
+ lastSuccessAt DateTime? @db.Timestamptz(3)
+ nextCheckAt DateTime @default(now()) @db.Timestamptz(3)
+ leaseUntil DateTime? @db.Timestamptz(3)
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ samples HealthSample[]
+ incidents HealthIncident[]
+ @@unique([userId,applicationId])
+ @@index([enabled,nextCheckAt])
+}
+model HealthSample {
+ id String @id @default(uuid()) @db.Uuid
+ monitorId String @db.Uuid
+ monitor HealthMonitor @relation(fields:[monitorId],references:[id],onDelete:Cascade)
+ healthy Boolean
+ status Int?
+ latencyMs Int
+ errorCode String?
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ @@index([monitorId,createdAt])
+}
+model HealthIncident {
+ source String @default("HEALTH")
+ scanPaths Json?
+ id String @id @default(uuid()) @db.Uuid
+ monitorId String @db.Uuid
+ userId String @db.Uuid
+ monitor HealthMonitor @relation(fields:[monitorId],references:[id],onDelete:Cascade)
+ state String @default("OPEN")
+ title String
+ diagnosis Json?
+ diagnosisLeaseUntil DateTime? @db.Timestamptz(3)
+ openedAt DateTime @default(now()) @db.Timestamptz(3)
+ resolvedAt DateTime? @db.Timestamptz(3)
+ events HealthIncidentEvent[]
+ actions HealthAction[]
+ @@index([userId,state,openedAt])
+}
+model HealthIncidentEvent {
+ id String @id @default(uuid()) @db.Uuid
+ incidentId String @db.Uuid
+ incident HealthIncident @relation(fields:[incidentId],references:[id],onDelete:Cascade)
+ message String
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ @@index([incidentId,createdAt])
+}
+model HealthAction {
+ id String @id @default(uuid()) @db.Uuid
+ incidentId String @db.Uuid
+ userId String @db.Uuid
+ incident HealthIncident @relation(fields:[incidentId],references:[id],onDelete:Cascade)
+ state String @default("PLANNED")
+ hash String
+ snapshot Json
+ result Json?
+ expiresAt DateTime @db.Timestamptz(3)
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+}
+
+model ReliabilityTask {
+ id String @id @default(uuid()) @db.Uuid
+ userId String @db.Uuid
+ applicationId String @db.Uuid
+ kind String
+ state String @default("PLANNED")
+ hash String
+ snapshot Json
+ result Json?
+ expiresAt DateTime @db.Timestamptz(3)
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ updatedAt DateTime @updatedAt @db.Timestamptz(3)
+ @@index([userId,applicationId,createdAt])
+ @@index([kind,state])
+}
+
+model ReliabilityRun {
+ id String @id @default(uuid()) @db.Uuid
+ userId String @db.Uuid
+ applicationId String @db.Uuid
+ kind String
+ state String @default("QUEUED")
+ input Json
+ events Json @default("[]")
+ result Json?
+ error String?
+ createdAt DateTime @default(now()) @db.Timestamptz(3)
+ updatedAt DateTime @updatedAt @db.Timestamptz(3)
+ @@index([userId,applicationId,createdAt])
+ @@index([state,createdAt])
+}

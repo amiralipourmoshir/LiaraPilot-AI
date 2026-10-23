@@ -1,0 +1,1 @@
+ALTER TABLE "HealthIncident" ADD COLUMN "source" TEXT NOT NULL DEFAULT 'HEALTH';

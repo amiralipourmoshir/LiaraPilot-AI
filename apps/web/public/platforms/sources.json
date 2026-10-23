@@ -1,0 +1,128 @@
+[
+  {
+    "platform": "node",
+    "source": "https://console.liara.ir/static/media/nodejs.5186f985bdf62450c92d.png",
+    "bytes": 41091,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "next",
+    "source": "https://console.liara.ir/static/media/nextjs.4efbcd540e5a587b81ac.png",
+    "bytes": 39267,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "laravel",
+    "source": "https://console.liara.ir/static/media/laravel.1cdbe82dc58d950143fc.png",
+    "bytes": 40798,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "php",
+    "source": "https://console.liara.ir/static/media/php.c071c8bc479b09f5f683.png",
+    "bytes": 41566,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "python",
+    "source": "https://console.liara.ir/static/media/python.008672afd0cf25e52b18.png",
+    "bytes": 21181,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "django",
+    "source": "https://console.liara.ir/static/media/django.dbd3b78d9ed7c9716554.png",
+    "bytes": 46396,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "flask",
+    "source": "https://console.liara.ir/static/media/flask.5cba38c1adf645ce1863.png",
+    "bytes": 28871,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "dotnet",
+    "source": "https://console.liara.ir/static/media/dotnet.51718859c86ec7632df3.png",
+    "bytes": 42091,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "react",
+    "source": "https://console.liara.ir/static/media/react.32287f1670344ec2a19f.png",
+    "bytes": 34338,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "angular",
+    "source": "https://console.liara.ir/static/media/angular.196556ed297898d57663.png",
+    "bytes": 33426,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "vue",
+    "source": "https://console.liara.ir/static/media/vuejs.a7897fd48dc733ea2a1b.png",
+    "bytes": 24394,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "static",
+    "source": "https://console.liara.ir/static/media/static.7ca653ef8fa1027e0659.png",
+    "bytes": 32592,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "go",
+    "source": "https://console.liara.ir/static/media/golang.78f605a7735643b9362c.png",
+    "bytes": 29268,
+    "size": [
+      275,
+      275
+    ]
+  },
+  {
+    "platform": "docker",
+    "source": "https://console.liara.ir/static/media/docker.da990585cec02dfbdb39.png",
+    "bytes": 34345,
+    "size": [
+      275,
+      275
+    ]
+  }
+]

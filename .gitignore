@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.local/
+packages/database/src/generated/
+apps/web/dist/
+playwright-report/
+test-results/
+*.log
+
+# Local credentials, databases and tooling output
+.envrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+coverage/
+.cache/
+.DS_Store

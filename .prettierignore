@@ -1,0 +1,7 @@
+node_modules
+.local
+dist
+apps/web/dist
+packages/database/src/generated
+pnpm-lock.yaml
+docs/references

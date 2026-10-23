@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-23",
+  "provider": "Liara AI",
+  "credentialStoredIn": "private server environment only",
+  "modelsList": {
+    "http": 200,
+    "contains": [
+      "openai/gpt-6.1-sol",
+      "openai/gpt-6-luna",
+      "openai/gpt-6-astra"
+    ]
+  },
+  "responsesEndpoint": {
+    "http": 404
+  },
+  "chatFunctionCallChecks": [
+    {
+      "model": "openai/gpt-6.1-sol",
+      "http": 200,
+      "function": "connectivity_check"
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "http": 200,
+      "function": "connectivity_check"
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "http": 402
+    }
+  ],
+  "applicationChatChecksWithFullToolRegistry": [
+    {
+      "model": "openai/gpt-6.1-sol",
+      "http": 200,
+      "persistedModelMatches": true,
+      "messages": 2
+    },
+    {
+      "model": "openai/gpt-6-luna",
+      "http": 200,
+      "persistedModelMatches": true,
+      "messages": 2
+    }
+  ],
+  "githubReadonlyCheck": {
+    "repository": "liara-cloud/nodejs-getting-started",
+    "commit": "ca453167e498d381d50678d16e37180696b41de6",
+    "framework": "express",
+    "files": 9,
+    "blockedBy": "missing package-lock.json"
+  },
+  "automatedSuite": {
+    "tests": 122,
+    "files": 13,
+    "result": "passed",
+    "upstream": "fixtures",
+    "database": "real PostgreSQL",
+    "queue": "real Redis/BullMQ"
+  },
+  "build": "passed",
+  "migrations": 6,
+  "secretScanMatches": 0,
+  "paasCloudMutationExecuted": false,
+  "browserVisualReviewPerformed": false
+}
